@@ -23,21 +23,26 @@ for (var i = 0; i < 16; i++) {
     }
 }
 
+console.log(mine);
 
-
-for (var i = 0; i < 16; i++) {
+for (var i = 0; i < 84; i++) {
 
     var richiesta = parseInt(prompt('Inserisi un numero da 1 a 100'));
 
     if (mine.includes(richiesta)) {
-        console.log("Hai perso");
+        console.log("Hai preso una mina, il colpevo è " + richiesta);
         break;
     } else if (numInseriti.includes(richiesta)) {
-        richiesta = parseInt(prompt('Inserisi un numero che non hai inserito in precedenza'));
+        alert('Attenzione non inserire numeri inseriti in precedenza');
+        i = i - 1;
+    } else if (richiesta < 1 || richiesta > 100) {
+        alert('Attenzione inserisci solo numeri da 1 a 100');
     } else {
         numInseriti.push(richiesta);
     }
 }
 
-console.log(mine);
-console.log(numInseriti);
+if (numInseriti.length == 84) {
+    console.log('Hai vinto!');
+
+}
