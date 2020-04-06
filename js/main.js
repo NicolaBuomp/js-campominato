@@ -7,3 +7,29 @@
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+var mine = [];
+var number;
+for (var i = 0; i < 16; i++) {
+    number = Math.floor(Math.random() * 100) + 1;
+
+    if (!mine.includes(number)) {
+        mine.push(number);
+    } else {
+        i = i - 1;
+    }
+}
+
+console.log(mine);
+
+for (var i = 0; i < 16; i++) {
+    var richiesta = parseInt(prompt('Inserisi i numeri'));
+
+    if (mine.includes(richiesta)) {
+        console.log("Hai perso");
+        break;
+    } else {
+        mine.push(richiesta);
+    }
+}
+
+console.log(mine);
