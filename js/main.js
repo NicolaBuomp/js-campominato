@@ -12,37 +12,46 @@
 
 var mine = [];
 var numInseriti = [];
-var number = 0;
-for (var i = 0; i < 16; i++) {
-    number = Math.floor(Math.random() * 100) + 1;
+var numUtente = 0;
 
-    if (!mine.includes(number)) {
-        mine.push(number);
-    } else {
-        i = i - 1;
+while (mine.length < 16) {
+    var numMine = numeriMine(100);
+
+    if (mine.includes(numMine) == false) {
+        mine.push(numMine)
     }
 }
-
 console.log(mine);
 
-for (var i = 0; i < 84; i++) {
+while ((numInseriti.length < 84) && (mine.includes(numUtente) !== true)) {
+    numUtente = parseInt(prompt('Inserisci un numero da 1 a 100'))
 
-    var richiesta = parseInt(prompt('Inserisi un numero da 1 a 100'));
+    controlloNumero(numUtente);
 
-    if (mine.includes(richiesta)) {
-        console.log("Hai preso una mina, il colpevo è " + richiesta);
-        break;
-    } else if (numInseriti.includes(richiesta)) {
-        alert('Attenzione non inserire numeri inseriti in precedenza');
-        i = i - 1;
-    } else if (richiesta < 1 || richiesta > 100) {
-        alert('Attenzione inserisci solo numeri da 1 a 100');
-    } else {
-        numInseriti.push(richiesta);
+    if (numInseriti.length == 84) {
+        alert('Hai Vinto!')
     }
 }
 
-if (numInseriti.length == 84) {
-    console.log('Hai vinto!');
 
+
+
+// function
+function numeriMine(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
+
+function controlloNumero(n) {
+    if (mine.includes(n)) {
+        alert('Ops, hai preso una mina!')
+
+    } else if (numInseriti.includes(n)) {
+        alert('Numero già inserito in precedenza');
+
+    } else if (numInseriti.includes(n) == false) {
+        numInseriti.push(n);
+
+    } else if ((n < 1) || (n > 100)) {
+        alert('Non inserire numeri inferiori a 1 e superiori a 100')
+    }
 }
