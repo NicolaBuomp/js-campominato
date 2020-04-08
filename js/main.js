@@ -13,9 +13,30 @@
 var mine = [];
 var numInseriti = [];
 var numUtente = 0;
+var max;
+var numVittoria;
+
+var difficolta = parseInt(prompt('Inserisci una difficoltà da 0 a 2'));
+
+switch (difficolta) {
+    case 0:
+        max = 100
+        numVittoria = 84
+        break;
+    case 1:
+        max = 80
+        numVittoria = 64
+        break;
+    case 2:
+        max = 50
+        numVittoria = 34
+        break;
+    default:
+        alert('Scegli una difficoltà');
+}
 
 while (mine.length < 16) {
-    var numMine = numeriMine(100);
+    var numMine = numeriMine(max);
 
     if (mine.includes(numMine) == false) {
         mine.push(numMine)
@@ -23,8 +44,8 @@ while (mine.length < 16) {
 }
 console.log(mine);
 
-while ((numInseriti.length < 84) && (mine.includes(numUtente) !== true)) {
-    numUtente = parseInt(prompt('Inserisci un numero da 1 a 100'))
+while ((numInseriti.length < numVittoria) && (mine.includes(numUtente) !== true)) {
+    numUtente = parseInt(prompt('Inserisci un numero da 1 a ' + max))
 
     controlloNumero(numUtente);
 
@@ -32,8 +53,6 @@ while ((numInseriti.length < 84) && (mine.includes(numUtente) !== true)) {
         alert('Hai Vinto!')
     }
 }
-
-
 
 
 // function
